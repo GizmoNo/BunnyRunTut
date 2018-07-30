@@ -5,12 +5,13 @@ using UnityEngine;
 public class BunnyController : MonoBehaviour {
 
     private Rigidbody2D MyRigidBody;
-    public float BunnyJumpForce = 750f;
+    public float BunnyJumpForce = 500f;
+    private Animator myAnim;
 	// Use this for initialization
 	void Start () {
 
         MyRigidBody = GetComponent<Rigidbody2D>();
-
+        myAnim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -20,5 +21,9 @@ public class BunnyController : MonoBehaviour {
 
             MyRigidBody.AddForce(transform.up * BunnyJumpForce);
         }
-	}
+
+        myAnim.SetFloat("vVelocity", MyRigidBody.velocity.y);
+
+        //myAnim.SetFloat("vVelocity", Mathf.Abs(MyRigidBody.velocity.y));
+    }
 }
